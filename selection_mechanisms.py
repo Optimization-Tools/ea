@@ -19,20 +19,20 @@ def roulette(touples, n):
 	
 
 def fitness_proportionate(parents, n):
-	return roulette([(parent, parent.fitness()) for parent in parents], n)
+	return roulette([(parent, parent.fitness()) for parent in parents.get_individuals], n)
 	
 def stochastic_uniform(parents, n):
-	return roulette([(parent, 1) for parent in parents], n)
+	return roulette([(parent, 1) for parent in parents.get_individuals], n)
 	
 def sigma_scaling(parents, n):
-	parents = [(parent, parent.fitness()) for parent in parents]
+	parents = [(parent, parent.fitness()) for parent in parents.get_individuals]
 	total = sum(k for i,k in parents)
 	average = total/len(parents)
 	sigma = sqrt(sum((fitness - average)**2 for parent, fitness in parents)/len(parents))
 	return roulette([(parent, (value-average)/(2*sigma)) for parent, value in parents])
 	
 def tournament(parents, n, k, e):
-	parents = [(parent, parent.fitness()) for parent in parents]
+	parents = [(parent, parent.fitness()) for parent in parents.get_individuals]
 	out = []
 	for i in range(n):
 		selection = random.sample(parents, k)
