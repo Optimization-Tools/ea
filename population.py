@@ -14,8 +14,8 @@ class population:
 		return len(this.individuals)
 		
 	def get_most_fit(this, number):
-		individuals.sort(key=lambda genotype: (-genotype.fitness())) # Sort individuals from most to least fit
-		return population(individuals[0:min(number, len(individuals))])
+		this.individuals.sort(key=lambda pheno: (pheno.fitness()), reverse=True) # Sort individuals from most to least fit
+		return population(this.individuals[0:min(number, len(this.individuals))])
 		
 	def combine(this, that):
 		return population(this.individuals + that.individuals)
