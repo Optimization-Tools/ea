@@ -18,7 +18,7 @@ class binary_genotype():
 		this.mutate = function
 		
 	def crossover(this, that, num_points):
-		points = [random.randint(1, len(this.gene) - 1) for i in xrange(num_points)] + [len(this.gene)]
+		points = random.sample(xrange(1, len(this.gene) - 1)) + [len(this.gene)]
 		points.sort()
 		genomes = [this, that]
 		start = 0
