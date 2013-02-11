@@ -1,3 +1,5 @@
+from __future__ import division
+
 class population:
 	individuals = None
 		
@@ -19,3 +21,9 @@ class population:
 		
 	def combine(this, that):
 		return population(this.individuals + that.individuals)
+		
+	def average_fitness(this):
+		return sum([pheno.fitness() for pheno in individuals])/this.size()
+		
+	def max_fitness(this):
+		return max([pheno.fitness() for pheno in individuals])

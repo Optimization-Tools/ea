@@ -2,15 +2,20 @@ import random
 
 class binary_genotype():
 	gene = None
+	mutate = None
 	
 	def __init__(this, length):
 		this.gene = [random.randint(0,1) for i in xrange(length)]
+		this.mutate = mutate_bitwise
 	
 	def generate_gene(this, length):
 		this.gene = [random.randint(0,1) for i in xrange(length)]
 	
 	def set_gene(this, gene):
 		this.gene = gene
+		
+	def set_mutation_strategy(this, function)
+		this.mutate = function
 		
 	def crossover(this, that, num_points):
 		points = [random.randint(1, len(this.gene) - 1) for i in xrange(num_points)] + [len(this.gene)]
