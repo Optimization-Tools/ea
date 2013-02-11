@@ -1,8 +1,8 @@
 class population:
 	individuals = None
-	
-	def __init__(this):
-		this.individuals = None
+		
+	def __init__(this, individuals):
+		this.individuals = individuals
 		
 	def set_individuals(this, individuals):
 		this.individuals = individuals
@@ -15,9 +15,7 @@ class population:
 		
 	def get_most_fit(this, number):
 		individuals.sort(key=lambda genotype: (-genotype.fitness())) # Sort individuals from most to least fit
-		return individuals[0:min(number, len(individuals))]
+		return population(individuals[0:min(number, len(individuals))])
 		
 	def combine(this, that):
-		combined = population()
-		combined.set_individuals(this.individuals + that.individuals)
-		return combined
+		return population(this.individuals + that.individuals)
