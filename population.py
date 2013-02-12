@@ -14,7 +14,7 @@ class population:
 		
 	def size(this):
 		return len(this.individuals)
-		
+	       
 	def get_most_fit(this, number):
 		this.individuals.sort(key=lambda pheno: (pheno.fitness()), reverse=True) # Sort individuals from most to least fit
 		return population(this.individuals[0:min(number, len(this.individuals))])

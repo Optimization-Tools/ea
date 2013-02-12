@@ -2,11 +2,11 @@ import random
 
 class binary_genotype():
 	gene = None
-	mutation = None
+	mutate = None
 
-	def __init__(this, length, mutation = mutate_bitwise):
+	def __init__(this, length, mutate = mutate_bitwise):
 		this.gene = [random.randint(0,1) for i in xrange(length)]
-		this.mutation = mutation
+		this.mutate = mutate
 	
 	def generate_gene(this, length):
 		this.gene = [random.randint(0,1) for i in xrange(length)]
