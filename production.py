@@ -17,8 +17,8 @@ class production:
     def produce(this, parents):
         pairs = [(parents[i], parents[i+1]) for i in xrange(0, len(parents), 2)]
         litter = []
-        for pair in pairs:
-            child1, child2 = pair[0].crossover(pair[1], this.crossover_points, this.crossover_rate)
+        for mom, dad in pairs:
+            child1, child2 = mom.crossover(dad, this.crossover_points, this.crossover_rate)
             child1.mutation_type(this.mutation_rate)
 			child2.mutation_type(this.mutation_rate)
             litter += [child1, child2]
