@@ -51,7 +51,7 @@ class tournament(selection_mechanism):
 	def __init__(this, n):
 		super(tournament, this).__init__(n)
 		this.k = input("Select tournament size: ")
-		this.e = input("Select probability of random winner of tournament")
+		this.e = input("Select probability of random winner of tournament: ")
 	def select(this, parents):
 		parents = [(parent, parent.fitness()) for parent in parents.get_individuals()]
 		out = []
