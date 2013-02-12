@@ -1,6 +1,6 @@
 import random
 
-class binary_genotype():
+class binary_genotype(object):
 	gene = None
 
 	def __init__(this, length):
