@@ -1,6 +1,6 @@
+from __future__ import division
 import binary_gtype
 import evoalg
-from __future__ import division
 
 class onemax_ptype(binary_gtype.binary_genotype):
 	def fitness(self):
