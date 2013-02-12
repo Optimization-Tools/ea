@@ -16,28 +16,48 @@ def roulette(touples, n):
 	cummulative = [k for i,k in touples]
 	
 	return [touples[bisect_left(cummulative, random.random()][0] for i in range(n)]
-	
 
-def fitness_proportionate(parents, n):
-	return roulette([(parent, parent.fitness()) for parent in parents.get_individuals], n)
+class selection_mechanism(object):
+	n = None
+	def __init__(this, n):
+		this.n = n
 	
-def stochastic_uniform(parents, n):
-	return roulette([(parent, 1) for parent in parents.get_individuals], n)
+class fitness_proportionate(selection_mechanism):
+	def __init__(this, n):
+		super(fitness_proportionate, this).__init__(n)
+	def select(parents):
+		return roulette([(parent, parent.fitness()) for parent in parents.get_individuals], this.n)
 	
-def sigma_scaling(parents, n):
-	parents = [(parent, parent.fitness()) for parent in parents.get_individuals]
-	total = sum(k for i,k in parents)
-	average = total/len(parents)
-	sigma = sqrt(sum((fitness - average)**2 for parent, fitness in parents)/len(parents))
-	return roulette([(parent, (value-average)/(2*sigma)) for parent, value in parents], n)
+class stochastic_uniform(selection_mechanism):
+	def __init__(this, n):
+		super(stochastic_uniform, this).__init__(n)
+	def select(parents):
+		return roulette([(parent, 1) for parent in parents.get_individuals], this.n)
 	
-def tournament(parents, n, k, e):
-	parents = [(parent, parent.fitness()) for parent in parents.get_individuals]
-	out = []
-	for i in range(n):
-		selection = random.sample(parents, k)
-		if random.random() < 0.9:
-			out += max(selection, key=itemgetter(1))[0]
-		else:
-			out += random.sample(selection, 1)[0]
-	return out
+class sigma_scaling(selection_mechanism):
+	def __init__(this, n):
+		super(sigma_scaling, this).__init__(n)
+	def select(parents):
+		parents = [(parent, parent.fitness()) for parent in parents.get_individuals]
+		total = sum(k for i,k in parents)
+		average = total/len(parents)
+		sigma = sqrt(sum((fitness - average)**2 for parent, fitness in parents)/len(parents))
+	return roulette([(parent, (value-average)/(2*sigma)) for parent, value in parents], this.n)
+	
+class tournament(selection_mechanism):
+	k = None
+	e = None
+	def __init__(this, n):
+		super(tournament, this).__init__(n)
+		this.k = input("Select tournament size: ")
+		this.e = input("Select probability of random winner of tournament")
+	def select(parents):
+		parents = [(parent, parent.fitness()) for parent in parents.get_individuals]
+		out = []
+		for i in range(this.n):
+			selection = random.sample(parents, this.k)
+			if random.random() < this.e:
+				out += max(selection, key=itemgetter(1))[0]
+			else:
+				out += random.sample(selection, 1)[0]
+		return out
