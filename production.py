@@ -1,4 +1,5 @@
 import random
+import population
 
 class production:
 	mutation_type = None
@@ -20,4 +21,4 @@ class production:
 			child1.mutation_type(this.mutation_rate)
 			child2.mutation_type(this.mutation_rate)
 			litter += [child1, child2]
-		return litter
+		return population(litter)
