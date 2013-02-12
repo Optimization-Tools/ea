@@ -2,12 +2,12 @@ import random
 
 class binary_genotype(object):
 	gene = None
-
-	def __init__(this, length):
-		this.gene = [random.randint(0,1) for i in xrange(length)]
+	
+	def __init__(this, gene):
+		this.gene = gene
 		
 	def generate_gene(this, length):
-		this.gene = [random.randint(0,1) for i in xrange(length)]
+		this.set_gene([random.randint(0,1) for i in xrange(length)])
 	
 	def set_gene(this, gene):
 		this.gene = gene
@@ -26,7 +26,7 @@ class binary_genotype(object):
 			start = point
 			if random.random() < prob:
 				phase = (phase + 1) % 2
-		return [result1, result2]
+		return [binary_genotype(result1), binary_genotype(result2)]
 	
 	def mutate_bitwise(this, prob):
 		for i in xrange(len(this.gene)):

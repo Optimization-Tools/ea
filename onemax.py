@@ -3,11 +3,14 @@ import binary_gtype
 import evoalg
 
 class onemax_ptype(binary_gtype.binary_genotype):
-	def fitness(self):
-		return sum(self.gene)/len(self.gene)
+	def fitness(this):
+		return sum(this.gene)/len(this.gene)
 
-	def __init__(self):
-		super(onemax_ptype, self).__init__(problem_size)
+	def __init__(this, gene=None):
+		super(onemax_ptype, this).__init__(gene)
+		if this.gene == None:
+			this.generate_gene(problem_size)
+		
 
 problem_size = int(input("Input problem size: "))
 evoalg.main(onemax_ptype)
