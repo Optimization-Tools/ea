@@ -50,3 +50,5 @@ class binary_genotype():
 				val *= 2
 			result += [integer]
 		return result
+
+	mutationtypes = {"bitwise":mutate_bitwise, "genewise":mutate_genewise}
