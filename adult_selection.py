@@ -7,7 +7,7 @@ class full_replacement(selection_protocol):
 
 	def select(adults, children):
 		return children
-        
+		
 class overproduction(selection_protocol):
 	def __init__(this, _):
 		litter_size = int(input("Input litter size: "))
