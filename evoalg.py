@@ -1,6 +1,6 @@
 import production
 import adult_selection
-import selecton_mechanism
+import selection_mechanisms
 import population
 
 def main(phenotype_class):
