@@ -1,7 +1,8 @@
+from __future__ import division
 from math import sqrt
 import random
 from operator import itemgetter
-from __future__ import division
+
 
 def roulette(touples, n):
 	total = sum((k for i,k in touples))
@@ -15,7 +16,7 @@ def roulette(touples, n):
 		
 	cummulative = [k for i,k in touples]
 	
-	return [touples[bisect_left(cummulative, random.random()][0] for i in range(n)]
+	return [touples[bisect_left(cummulative, random.random())][0] for i in range(n)]
 
 class selection_mechanism(object):
 	n = None
@@ -42,7 +43,7 @@ class sigma_scaling(selection_mechanism):
 		total = sum(k for i,k in parents)
 		average = total/len(parents)
 		sigma = sqrt(sum((fitness - average)**2 for parent, fitness in parents)/len(parents))
-	return roulette([(parent, (value-average)/(2*sigma)) for parent, value in parents], this.n)
+		return roulette([(parent, (value-average)/(2*sigma)) for parent, value in parents], this.n)
 	
 class tournament(selection_mechanism):
 	k = None
