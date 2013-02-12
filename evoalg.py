@@ -11,11 +11,22 @@ def main(phenotype_class):
 	protocol = adult_selection.protocols[raw_input("Input the wanted selection protocol (" + "/".join(adult_selection.protocols.keys() + "): ")](popsize)
 	mechanism = selection_mechanism.mechanisms[raw_input("Input the wanted selection mechanism (" + "/".join(selection_mechanisms.mechanisms.keys() + "): ")](protocol.litter_size)
 
-	pop = population([phenotype_class.__init__() for i in range(popsize)])
+	pop = population([phenotype_class() for i in range(popsize)])
 	
-	best = []
-	average = []
-	std_dev = []
+	best = [pop.max_fitness()]
+	average = [pop.average_fitness()]
+	std_dev = [pop.fitness_standard_deviation()]
 	
 	generation = 0
-	while generation < generations and goal != 0 and best[-1] < goal:
+	while generation <= generations and goal != 0 and best[-1] < goal:
+		parents = mechanism.select(pop)
+		litter = babymaker.produce(parents)
+		pop = protocol.select(pop, litter)
+		best += [pop.max_fitness()]
+		average = [pop.average_fitness()]
+		std_dev = [pop.fitness_standard_deviation()]
+		
+		
+	print best
+	print average
+	print std_dev
