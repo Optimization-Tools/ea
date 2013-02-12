@@ -20,7 +20,7 @@ class production:
 		litter = []
 		for mom, dad in pairs:
 			child1, child2 = mom.crossover(dad, this.crossover_points, this.crossover_rate)
-			child1.mutation_type(this.mutation_rate)
-			child2.mutation_type(this.mutation_rate)
-			litter += [this.ptype_class(child1), this.ptype_class(child2)]
-		return population(litter)
+			this.mutation_type(child1, this.mutation_rate)
+			this.mutation_type(child2, this.mutation_rate)
+			litter += [this.ptype_class(child1.gene), this.ptype_class(child2.gene)]
+		return population.population(litter)

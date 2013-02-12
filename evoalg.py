@@ -23,8 +23,8 @@ def main(phenotype_class):
 		litter = babymaker.produce(parents)
 		pop = protocol.select(pop, litter)
 		best += [pop.max_fitness()]
-		average = [pop.average_fitness()]
-		std_dev = [pop.fitness_standard_deviation()]
+		average += [pop.average_fitness()]
+		std_dev += [pop.fitness_standard_deviation()]
 		
 		
 	print best
