@@ -2,6 +2,7 @@ import production
 import adult_selection
 import selection_mechanisms
 import population
+from pylab import *
 
 def main(phenotype_class):
 	popsize = int(input("Input population size: "))
@@ -30,3 +31,9 @@ def main(phenotype_class):
 	print best
 	print average
 	print std_dev
+	
+	plot(range(len(best)), best)
+	plot(range(len(best)), average)
+	plot(range(len(best)), std_dev)
+	
+	show()
