@@ -9,9 +9,9 @@ def roulette(touples, n):
 	touples.sort(reverse=True, key=itemgetter(1))
 	
 	previous = touples[0]
-	previous[1] = previous[1]/sum
+	previous[1] = previous[1]/total
 	for touple in touples[1:]:
-		touple[1] = touple[1]/sum + previous[1]
+		touple[1] = touple[1]/total + previous[1]
 		previous = touple
 		
 	cummulative = [k for i,k in touples]
