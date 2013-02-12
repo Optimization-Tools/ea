@@ -1,7 +1,7 @@
-import genotypes
+import binary_gtype
 import evoalg
 
-class onemax_ptype(genotypes.binary_genotype):
+class onemax_ptype(binary_gtype.binary_genotype):
     def fitness(self):
         return sum(self.gene)
 
