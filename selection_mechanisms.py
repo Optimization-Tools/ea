@@ -61,3 +61,5 @@ class tournament(selection_mechanism):
 			else:
 				out += random.sample(selection, 1)[0]
 		return out
+		
+mechanisms = {"fitness_proportionate":fitness_proportionate, "stochastic_uniform":stochastic_uniform, "sigma_scaling":sigma_scaling, "tournament":tournament}
