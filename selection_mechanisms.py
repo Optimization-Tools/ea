@@ -29,7 +29,7 @@ def sigma_scaling(parents, n):
 	total = sum(k for i,k in parents)
 	average = total/len(parents)
 	sigma = sqrt(sum((fitness - average)**2 for parent, fitness in parents)/len(parents))
-	return roulette([(parent, (value-average)/(2*sigma)) for parent, value in parents])
+	return roulette([(parent, (value-average)/(2*sigma)) for parent, value in parents], n)
 	
 def tournament(parents, n, k, e):
 	parents = [(parent, parent.fitness()) for parent in parents.get_individuals]
