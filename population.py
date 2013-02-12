@@ -27,3 +27,7 @@ class population:
 		
 	def max_fitness(this):
 		return max([pheno.fitness() for pheno in this.individuals])
+
+	def fitness_standard_deviation(this):
+		average = this.average_fitness()
+		return (sum([(pheno.fitness() - average) ** 2 for pheno in this.individuals])/this.size()) ** 0.5

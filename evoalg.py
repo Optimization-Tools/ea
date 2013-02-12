@@ -11,7 +11,7 @@ def main(phenotype_class):
 	protocol = adult_selection.protocols[raw_input("Input the wanted selection protocol (" + "/".join(adult_selection.protocols.keys()) + "): ")](popsize)
 	mechanism = selection_mechanisms.mechanisms[raw_input("Input the wanted selection mechanism (" + "/".join(selection_mechanisms.mechanisms.keys()) + "): ")](protocol.litter_size)
 
-	pop = population([phenotype_class() for i in range(popsize)])
+	pop = population.population([phenotype_class() for i in range(popsize)])
 	
 	best = [pop.max_fitness()]
 	average = [pop.average_fitness()]
