@@ -1,6 +1,7 @@
 import production
 import adult_selection
 import selecton_mechanism
+import population
 
 def main(phenotype_class):
 	popsize = int(input("Input population size: "))
@@ -9,6 +10,8 @@ def main(phenotype_class):
 	goal = float(input("Input fitness goal: "))
 	protocol = adult_selection.protocols[raw_input("Input the wanted selection protocol (" + "/".join(adult_selection.protocols.keys() + "): ")](popsize)
 	mechanism = selection_mechanism.mechanisms[raw_input("Input the wanted selection mechanism (" + "/".join(selection_mechanisms.mechanisms.keys() + "): ")](protocol.litter_size)
+
+	pop = population([phenotype_class.__init__() for i in range(popsize)])
 	
 	best = []
 	average = []
