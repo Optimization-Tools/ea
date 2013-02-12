@@ -19,15 +19,16 @@ class binary_genotype():
 		points.sort()
 		genomes = [this, that]
 		start = 0
-		result = []
+		result1, result2 = [], []
 		phase = 0
 		for point in points:
 			stop = point
-			result += genomes[phase].gene[start:stop]
+			result1 += genomes[phase].gene[start:stop]
+			result2 += genomes[(phase+1)%2].gene[start:stop]
 			start = point
 			if random.random() < prob:
 				phase = (phase + 1) % 2
-		return result
+		return [result1, result2]
 	
 	def mutate_bitwise(this, prob):
 		for i in xrange(len(this.gene)):
