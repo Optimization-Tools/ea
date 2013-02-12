@@ -26,13 +26,13 @@ class fitness_proportionate(selection_mechanism):
 	def __init__(this, n):
 		super(fitness_proportionate, this).__init__(n)
 	def select(parents):
-		return roulette([(parent, parent.fitness()) for parent in parents.get_individuals], this.n)
+		parents.set_individuals(roulette([(parent, parent.fitness()) for parent in parents.get_individuals], this.n))
 	
 class stochastic_uniform(selection_mechanism):
 	def __init__(this, n):
 		super(stochastic_uniform, this).__init__(n)
 	def select(parents):
-		return roulette([(parent, 1) for parent in parents.get_individuals], this.n)
+		parents.set_individuals(roulette([(parent, 1) for parent in parents.get_individuals], this.n))
 	
 class sigma_scaling(selection_mechanism):
 	def __init__(this, n):
@@ -42,7 +42,7 @@ class sigma_scaling(selection_mechanism):
 		total = sum(k for i,k in parents)
 		average = total/len(parents)
 		sigma = sqrt(sum((fitness - average)**2 for parent, fitness in parents)/len(parents))
-	return roulette([(parent, (value-average)/(2*sigma)) for parent, value in parents], this.n)
+		parents.set_individuals(roulette([(parent, (value-average)/(2*sigma)) for parent, value in parents], this.n))
 	
 class tournament(selection_mechanism):
 	k = None
@@ -60,6 +60,6 @@ class tournament(selection_mechanism):
 				out += max(selection, key=itemgetter(1))[0]
 			else:
 				out += random.sample(selection, 1)[0]
-		return out
+		parents.set_individuals(out)
 		
 mechanisms = {"fitness_proportionate":fitness_proportionate, "stochastic_uniform":stochastic_uniform, "sigma_scaling":sigma_scaling, "tournament":tournament}
