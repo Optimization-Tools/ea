@@ -2,6 +2,7 @@ from __future__ import division
 from math import sqrt
 import random
 from operator import itemgetter
+from bisect import bisect_left
 
 
 def roulette(touples, n):

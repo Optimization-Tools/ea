@@ -13,7 +13,7 @@ class binary_genotype(object):
 		this.gene = gene
 		
 	def crossover(this, that, num_points, prob):
-		points = random.sample(xrange(1, len(this.gene) - 1)) + [len(this.gene)]
+		points = random.sample(xrange(1, len(this.gene) - 1), num_points) + [len(this.gene)]
 		points.sort()
 		genomes = [this, that]
 		start = 0
