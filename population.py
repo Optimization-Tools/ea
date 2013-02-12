@@ -23,7 +23,7 @@ class population:
 		return population(this.individuals + that.individuals)
 		
 	def average_fitness(this):
-		return sum([pheno.fitness() for pheno in individuals])/this.size()
+		return sum([pheno.fitness() for pheno in this.individuals])/this.size()
 		
 	def max_fitness(this):
-		return max([pheno.fitness() for pheno in individuals])
+		return max([pheno.fitness() for pheno in this.individuals])

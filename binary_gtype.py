@@ -4,18 +4,15 @@ class binary_genotype():
 	gene = None
 	mutate = None
 	
-	def __init__(this, length):
+	def __init__(this, length, mutation_strategy = mutate_bitwise):
 		this.gene = [random.randint(0,1) for i in xrange(length)]
-		this.mutate = mutate_bitwise
+		this.mutate = mutation_strategy
 	
 	def generate_gene(this, length):
 		this.gene = [random.randint(0,1) for i in xrange(length)]
 	
 	def set_gene(this, gene):
 		this.gene = gene
-		
-	def set_mutation_strategy(this, function)
-		this.mutate = function
 		
 	def crossover(this, that, num_points):
 		points = random.sample(xrange(1, len(this.gene) - 1)) + [len(this.gene)]
@@ -40,3 +37,15 @@ class binary_genotype():
 		if random.random() < prob:
 			i = random.randint(0, len(this.gene) - 1)
 			this.gene[i] = 0 if this.gene[i] == 1 else 1
+		
+	def develop_intlist(this, bits):
+		result = []
+		for i in xrange(0, len(this.gene), bits):
+			substr = this.gene[i: i + bits]
+			val = 1
+			integer = 0
+			for bit in substr[::-1]:
+				integer += bit * val
+				val *= 2
+			result += [integer]
+		return result
