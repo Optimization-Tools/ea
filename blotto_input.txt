@@ -8,6 +8,6 @@ bitwise
 1
 500
 0
-overproduction
+generational_mixing
 20
 sigma_scaling

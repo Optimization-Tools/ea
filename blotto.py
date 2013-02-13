@@ -2,7 +2,7 @@ from __future__ import division
 import binary_gtype
 import evoalg
 from math import log
-from pylab import plot, show
+from pylab import plot, show, figure
 
 class blotto_ptype(binary_gtype.binary_genotype):
 	phenotype = None
@@ -61,6 +61,8 @@ population_list = evoalg.main(blotto_ptype)
 average_entropy = [sum(strategy.calc_entropy() for strategy in pop.get_individuals())/problem_size for pop in population_list]
 best_entropy = [pop.get_most_fit(1).get_individuals()[0].calc_entropy() for pop in population_list]
 
+figure(1)
 plot(range(len(average_entropy)), average_entropy, color='b')
+figure(2)
 plot(range(len(best_entropy)), best_entropy, color='r')
 show()
