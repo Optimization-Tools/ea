@@ -47,8 +47,8 @@ class blotto_ptype(binary_gtype.binary_genotype):
 		
 		this.generate_phenotype()
 		
-def calc_entropy(pop):
-	return -sum(strategy.fitness*log(strategy.fitness, 2) for strategy in pop.get_individuals())
+	def calc_entropy(this):
+		return -sum((battle*log(battle, 2) if battle != 0 else 0) for battle in this.phenotype)
 		
 
 problem_size = int(input("Input number of battles: "))
@@ -56,7 +56,9 @@ rf = float(input("Input reployment fraction: "))
 lf = float(input("Input \"morale reduction from loss\"-fraction: "))
 population_list = evoalg.main(blotto_ptype)
 
-entropy = [calc_entropy(pop) for pop in population_list]
+average_entropy = [sum(strategy.calc_entropy() for strategy in pop.get_individuals())/problem_size for pop in population_list]
+best_entropy = [pop.get_most_fit(1).get_individuals()[0].calc_entropy() for pop in population_list]
 
-plot(range(len(entropy)), entropy)
+plot(range(len(average_entropy)), average_entropy, color='b')
+plot(range(len(best_entropy)), best_entropy, color='r')
 show()
