@@ -64,7 +64,7 @@ class tournament(selection_mechanism):
 			if random.random() < this.e:
 				out += [max(selection, key=itemgetter(1))[0]]
 			else:
-				out += [random.sample(selection, 1)[0]]
+				out += [random.sample(selection, 1)[0][0]]
 		return out
 		
 mechanisms = {"fitness_proportionate":fitness_proportionate, "stochastic_uniform":stochastic_uniform, "sigma_scaling":sigma_scaling, "tournament":tournament}
