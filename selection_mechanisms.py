@@ -44,7 +44,10 @@ class sigma_scaling(selection_mechanism):
 		total = sum(k for i,k in parents)
 		average = total/len(parents)
 		sigma = sqrt(sum((fitness - average)**2 for parent, fitness in parents)/len(parents))
-		return roulette([[parent, (value-average)/(2*sigma)] for parent, value in parents], this.n)
+		if sigma:
+			return roulette([[parent, 1 + (value-average)/(2*sigma)] for parent, value in parents], this.n)
+		else:
+			return roulette([[parent, 1] for parent, value in parents], this.n)
 	
 class tournament(selection_mechanism):
 	k = None
