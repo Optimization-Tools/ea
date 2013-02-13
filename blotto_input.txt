@@ -1,0 +1,13 @@
+5
+0
+0
+20
+bitwise
+0.04
+1
+1
+500
+0
+overproduction
+20
+sigma_scaling
