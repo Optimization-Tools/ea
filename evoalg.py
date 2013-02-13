@@ -20,7 +20,7 @@ def main(phenotype_class):
 	
 	generation = 0
 	generation_s = ""
-	while generation <= generations and goal != 0 and population_list[-1].max_fitness() < goal:
+	while generation <= generations or (goal != 0 and population_list[-1].max_fitness() < goal):
 		parents = mechanism.select(pop)
 		litter = babymaker.produce(parents)
 		pop = protocol.select(pop, litter)
