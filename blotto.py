@@ -15,15 +15,15 @@ class blotto_ptype(binary_gtype.binary_genotype):
 				that.morale *= (1-lf)
 				if i < problem_size-1
 					distribute = diff*rf/(problem_size-i+1)
-					for battle in this.phenotype[i+1:]:
-						battle += distribute
+					for j in xrange(i+1, problem_size):
+						this.phenotype[j] += distribute
 			elif diff < 0:
 				that.fitness += 2
 				this.morale *= (1-lf)
 				if i < problem_size-1:
 					distribute = -diff*rf/(problem_size-i+1)
-					for battle in that.phenotype[i+1:]:
-						battle += distribute
+					for j in xrange(i+1, problem_size):
+						that.phenotype[j] += distribute
 			else:
 				this.fitness += 1
 				that.fitness += 1
