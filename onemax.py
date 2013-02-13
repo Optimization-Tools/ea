@@ -32,9 +32,9 @@ average_minus_stddev =[pop.average_fitness() - pop.fitness_standard_deviation() 
 std_dev = [pop.fitness_standard_deviation() for pop in population_list]
 
 print "Plotting..."
-fill_between(range(len(best)), average_plus_stddev, average_minus_stddev, alpha=0.5)
-plot(range(len(best)), best)
-plot(range(len(best)), average)
+fill_between(range(len(best)), average_plus_stddev, average_minus_stddev, alpha=0.2, color='k')
+plot(range(len(best)), best, color='r')
+plot(range(len(best)), average, color='b')
 # plot(range(len(best)), std_dev)
-
+savefig('onemax_out.png')
 show()
