@@ -11,9 +11,9 @@ class production:
 	def __init__(this, ptype_class):
 		this.ptype_class = ptype_class
 		this.mutation_type = ptype_class.mutationtypes[raw_input("Select mutation type (" + "/".join(ptype_class.mutationtypes.keys()) + "): ")]
-		this.mutation_rate = int(input("Input mutation rate: "))
+		this.mutation_rate = float(input("Input mutation rate: "))
 		this.crossover_points = int(input("Input maximum crossover points: "))
-		this.crossover_rate = int(input("Input per-point crossover chance: "))
+		this.crossover_rate = float(input("Input per-point crossover chance: "))
 
 	def produce(this, parents):
 		pairs = [(parents[i], parents[i+1]) for i in xrange(0, len(parents), 2)]

@@ -1,6 +1,7 @@
 from __future__ import division
 import binary_gtype
 import evoalg
+from pylab import *
 
 class onemax_ptype(binary_gtype.binary_genotype):
 	def fitness(this):
@@ -14,3 +15,13 @@ class onemax_ptype(binary_gtype.binary_genotype):
 
 problem_size = int(input("Input problem size: "))
 population_list = evoalg.main(onemax_ptype)
+
+best = [pop.max_fitness() for pop in population_list]
+average = [pop.average_fitness() for pop in population_list]
+std_dev = [pop.fitness_standard_deviation() for pop in population_list]
+
+plot(range(len(best)), best)
+plot(range(len(best)), average)
+plot(range(len(best)), std_dev)
+
+show()

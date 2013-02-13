@@ -2,7 +2,7 @@ import production
 import adult_selection
 import selection_mechanisms
 import population
-from pylab import *
+from sys import stdout
 
 def main(phenotype_class):
 	popsize = int(input("Input population size: "))
@@ -16,6 +16,8 @@ def main(phenotype_class):
 	
 	population_list = [pop]
 	
+	stdout.write("Progress: generation \n")
+	
 	generation = 0
 	while generation <= generations and goal != 0 and population_list[-1].max_fitness() < goal:
 		parents = mechanism.select(pop)
@@ -23,6 +25,7 @@ def main(phenotype_class):
 		pop = protocol.select(pop, litter)
 		
 		population_list += [pop]
+		generation += 1
 		
 		
-	return population_list[]
+	return population_list
