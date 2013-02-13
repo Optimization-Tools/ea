@@ -8,15 +8,21 @@ class onemax_ptype(binary_gtype.binary_genotype):
 
 	def calc_fitness(this, pop_list):
 		for pheno in pop_list:
-			pheno.fitness = sum(pheno.gene)/problem_size
+			pheno.fitness = sum([pheno.gene[i] == target[i] for i in xrange(problem_size)])/problem_size
 
 	def __init__(this, gene=None):
 		super(onemax_ptype, this).__init__(gene)
 		if this.gene == None:
 			this.generate_gene(problem_size)
 		
+problem = raw_input("Input problem to solve (matching/onemax): ")
+if problem == "matching":
+	target = [int(c) for c in raw_input("Input a bit string: ")]
+	problem_size = len(target)
+else:
+	problem_size = int(input("Input problem size: "))
+	target = [1 for i in xrange(problem_size)]
 
-problem_size = int(input("Input problem size: "))
 population_list = evoalg.main(onemax_ptype)
 
 best = [pop.max_fitness() for pop in population_list]
