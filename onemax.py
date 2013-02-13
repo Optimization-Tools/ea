@@ -4,8 +4,11 @@ import evoalg
 from pylab import *
 
 class onemax_ptype(binary_gtype.binary_genotype):
-	def fitness(this):
-		return sum(this.gene)/len(this.gene)
+	fitness = None
+
+	def calc_fitness(this, pop_list):
+		for pheno in pop_list:
+			pheno.fitness = sum(pheno.gene)/problem_size
 
 	def __init__(this, gene=None):
 		super(onemax_ptype, this).__init__(gene)
