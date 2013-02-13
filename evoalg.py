@@ -14,26 +14,15 @@ def main(phenotype_class):
 
 	pop = population.population([phenotype_class() for i in range(popsize)])
 	
-	best = [pop.max_fitness()]
-	average = [pop.average_fitness()]
-	std_dev = [pop.fitness_standard_deviation()]
+	population_list = [pop]
 	
 	generation = 0
 	while generation <= generations and goal != 0 and best[-1] < goal:
 		parents = mechanism.select(pop)
 		litter = babymaker.produce(parents)
 		pop = protocol.select(pop, litter)
-		best += [pop.max_fitness()]
-		average += [pop.average_fitness()]
-		std_dev += [pop.fitness_standard_deviation()]
+		
+		population_list += [pop]
 		
 		
-	print best
-	print average
-	print std_dev
-	
-	plot(range(len(best)), best)
-	plot(range(len(best)), average)
-	plot(range(len(best)), std_dev)
-	
-	show()
+	return population_list[]

@@ -13,4 +13,4 @@ class onemax_ptype(binary_gtype.binary_genotype):
 		
 
 problem_size = int(input("Input problem size: "))
-evoalg.main(onemax_ptype)
+population_list = evoalg.main(onemax_ptype)
