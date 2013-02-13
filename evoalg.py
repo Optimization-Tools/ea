@@ -16,16 +16,22 @@ def main(phenotype_class):
 	
 	population_list = [pop]
 	
-	stdout.write("Progress: generation \n")
+	stdout.write("\nProgress: generation ")
 	
 	generation = 0
+	generation_s = ""
 	while generation <= generations and goal != 0 and population_list[-1].max_fitness() < goal:
 		parents = mechanism.select(pop)
 		litter = babymaker.produce(parents)
 		pop = protocol.select(pop, litter)
 		
 		population_list += [pop]
-		generation += 1
 		
+		stdout.write("\b"*len(generation_s))
+		generation += 1
+		generation_s = str(generation)
+		stdout.write(generation_s)
+		
+	stdout.write("\nDone!\n")
 		
 	return population_list

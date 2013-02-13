@@ -20,6 +20,7 @@ best = [pop.max_fitness() for pop in population_list]
 average = [pop.average_fitness() for pop in population_list]
 std_dev = [pop.fitness_standard_deviation() for pop in population_list]
 
+print "Plotting..."
 plot(range(len(best)), best)
 plot(range(len(best)), average)
 plot(range(len(best)), std_dev)
