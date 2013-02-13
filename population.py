@@ -1,5 +1,5 @@
 from __future__ import division
-from operator import atrgetter
+from operator import attrgetter
 
 class population:
 	individuals = None
@@ -32,4 +32,4 @@ class population:
 		return (sum([(pheno.fitness - average) ** 2 for pheno in this.individuals])/this.size()) ** 0.5
 		
 	def sort(this):
-		this.individuals.sort(reverse=True, key=atrgettr(fitness))
+		this.individuals.sort(reverse=True, key=attrgettr(fitness))
