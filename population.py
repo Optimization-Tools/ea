@@ -1,4 +1,5 @@
 from __future__ import division
+from operator import atrgetter
 
 class population:
 	individuals = None
@@ -29,3 +30,6 @@ class population:
 	def fitness_standard_deviation(this):
 		average = this.average_fitness()
 		return (sum([(pheno.fitness - average) ** 2 for pheno in this.individuals])/this.size()) ** 0.5
+		
+	def sort(this):
+		this.individuals.sort(reverse=True, key=atrgettr(fitness))
