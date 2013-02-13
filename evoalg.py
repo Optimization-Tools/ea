@@ -17,7 +17,7 @@ def main(phenotype_class):
 	population_list = [pop]
 	
 	generation = 0
-	while generation <= generations and goal != 0 and best[-1] < goal:
+	while generation <= generations and goal != 0 and population_list[-1].max_fitness() < goal:
 		parents = mechanism.select(pop)
 		litter = babymaker.produce(parents)
 		pop = protocol.select(pop, litter)
