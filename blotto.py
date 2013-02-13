@@ -32,6 +32,8 @@ class blotto_ptype(binary_gtype.binary_genotype):
 	
 	def calc_fitness(this, lords):
 		for i in range(len(lords)):
+			lords[i].fitness = 0
+		for i in range(len(lords)):
 			for lord in lords[i+1:]:
 				lords[i].battle(lord)
 		
