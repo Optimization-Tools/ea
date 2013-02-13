@@ -27,11 +27,14 @@ population_list = evoalg.main(onemax_ptype)
 
 best = [pop.max_fitness() for pop in population_list]
 average = [pop.average_fitness() for pop in population_list]
+average_plus_stddev = [pop.average_fitness() + pop.fitness_standard_deviation() for pop in population_list]
+average_minus_stddev =[pop.average_fitness() - pop.fitness_standard_deviation() for pop in population_list]
 std_dev = [pop.fitness_standard_deviation() for pop in population_list]
 
 print "Plotting..."
+fill_between(range(len(best)), average_plus_stddev, average_minus_stddev, alpha=0.5)
 plot(range(len(best)), best)
 plot(range(len(best)), average)
-plot(range(len(best)), std_dev)
+# plot(range(len(best)), std_dev)
 
 show()
