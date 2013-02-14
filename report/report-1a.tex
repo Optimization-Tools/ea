@@ -9,9 +9,14 @@
 \maketitle
 
 \section{Description of Code}
-Our code is organized into general-purpose scripts, and problem-specific scripts. The general-purpose scripts contain components that can be used for more than one problem, such as selection mechanisms, various genotypes and the main loop. The problem-specific scripts contain everything specific to one (or a few) problems, such as the phenotype class (which is a subclass of the genotype class), phenotype development function, and the fitness evaluation function. They also serve as the main entry point for the program. What follows is a step-by-step description of an example run of the \textsc{One-Max} problem.
+Our code is organized into general-purpose scripts and problem-specific scripts. The general-purpose scripts contain components that can be used for more than one problem, such as selection mechanisms, various genotypes and the main loop. The problem-specific scripts contain everything specific to one (or a few) problems, such as the phenotype class (which is a subclass of the genotype class), phenotype development function, and the fitness evaluation function. They also serve as the main entry point for the program. What follows is a step-by-step description of an example run of the \textsc{One-Max} problem.
 \begin{enumerate}
-\item{onemax.py starts, and collects problem-specific data: if we are solving \textsc{One-Max} or string matching, and problem size/target string, and puts this in static fields}
+\item{onemax.py starts, and collects problem-specific data:
+\begin{itemize}
+\item{whether we are solving \textsc{One-Max} or string matching}
+\item{problem size/target string}
+\end{itemize}
+and puts this in static fields.}
 \item{onemax.py calls the main EA function, passing the phenotype class as an argument}
 \item{The main EA function collects parameters for the run. These include population size, number of generations, fitness goal if applicable, selection protocol and selection mechanism. The last two are implemented as objects that carry out the desired function.}
 \item{Sigma scaling and overproduction are chosen, and objects for these are instantiated. Overproduction needs to know the litter size, so this is collected from the user in the constructor for this class.}
@@ -27,7 +32,7 @@ Our code is organized into general-purpose scripts, and problem-specific scripts
 \section{Reusability and Modularity}
 Taking the things mentioned in the problem text point by point, here's what's needed to add new ones:
 \begin{itemize}
-\item{\textbf{Phenotypes} --- As these are problem specific, a new phenotype class is added to the script for the problem to be solved. The rest of the program interacts with the phenotype class through the fitness field, and calc\_fitness, which accepts a population and sets the fitness field for all individuals in that population.}
+\item{\textbf{Phenotypes} --- As these are problem specific, a new phenotype class is added to the script for the problem to be solved. The rest of the program interacts with the phenotype class through the fitness field and calc\_fitness, which accepts a population and sets the fitness field for all individuals in that population.}
 \item{\textbf{Genotypes} --- Phenotypes are subclasses of genotypes, so a new genotype class can be placed either in the problem-specific script, or in its own file if it can be reused. The interface to a genotype is through the methods mutate and crossover. In addition to this a genotype class may have other methods or fields, but these are only used internally and by the phenotype class.}
 \item{\textbf{Genetic Operators} --- If need be, mutate and crossover can be fields rather than methods, and then these fields can be set to the desired method at runtime. This is done by the production class (since it is the only class that actually crosses and mutates genomes). We do this with the binary\_gtype class, which supports both per-bit and one-bit-per-gene mutations.}
 \item{\textbf{Selection Mechanisms} --- Selection mechanisms (and protocols) are objects with a standard interface, so adding new ones is as simple as writing a new class with the same interface.}
@@ -64,7 +69,7 @@ We see that 1\% mutation rate gets an answer quickest, so we use it for analysis
 \begin{itemize}
 \item{\textbf{Fitness Proportionate} --- Kind of slow, but it gets there.}
 \item{\textbf{Sigma Scaling} --- Much better. It should also be noted that the na\"{i}ve fitness function actually works with this one, since sigma scaling sort of does the job for us.}
-\item{\textbf{Tournament} --- Tournament size = 20 and $\epsilon$ = 0.1 was used. Even better results.}
+\item{\textbf{Tournament} --- Tournament size = 20 and $\epsilon$ = 0.1 was used. Even better results. Tournament size = Population size and $\epsilon$ = 0 would probably work even better. The reason for this is that \textsc{One-Max} has no local optima, so you lose nothing by }
 \item{\textbf{Stochastic uniform} --- When paired with full generational replacement, amounts to a random search, since there is no selection pressure anywhere.}
 \end{itemize}
 
@@ -73,6 +78,6 @@ We did not expect this to impact the problem difficulty in any way, since matchi
 
 % OM NOM NOM TASTY PICTURES
 
-\centerline{\includegraphics[width=1.2\textwidth]{graph_bundle_3}}
+\centerline{\includegraphics[width=1.1\textwidth]{graph_bundle_3}}
 
 \end{document}
