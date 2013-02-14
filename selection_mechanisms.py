@@ -16,7 +16,7 @@ def roulette(touples, n):
 		previous = touple
 		
 	cummulative = [k for i,k in touples]
-	
+
 	return [touples[bisect_left(cummulative[:-1], random.random())][0] for i in range(n)]
 
 class selection_mechanism(object):
