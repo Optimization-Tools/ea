@@ -2,7 +2,7 @@ from __future__ import division
 import binary_gtype
 import evoalg
 from math import log
-from pylab import plot, show, figure, fill_between, xlabel, ylabel, title, legend
+from pylab import plot, show, figure, fill_between, xlabel, ylabel, title, legend, savefig
 from copy import deepcopy
 
 class blotto_ptype(binary_gtype.binary_genotype):
@@ -92,6 +92,7 @@ title("Average strategy entropy in the population")
 xlabel("Generation")
 ylabel("Entropy")
 legend()
+savefig('blotto_entropy.png')
 
 figure(2)
 fill_between(range(len(population_list)), topline, bottomline, alpha=0.2, color='b')
@@ -102,7 +103,7 @@ title("Fitness plot for Blotto strategies")
 xlabel("Generation")
 ylabel("Fitness")
 legend(loc="lower center", ncol=3)
-
+savefig('blotto_fitness.png')
 
 colors = ['b', 'g', 'r', 'c', 'm', 'y', 'w']
 def strategy_plot(index):
@@ -114,7 +115,8 @@ def strategy_plot(index):
 			bottomlist[k] = toplist[k]
 			toplist[k] += population_list[k].get_individuals()[index].phenotype[i]
 	fill_between(range(len(population_list)), toplist, bottomlist, alpha=1, color=colors[(problem_size)%7])
-	plot(range(len(population_list)), [pop.get_individuals()[index].fitness/(2*len(pop.get_individuals())) for pop in population_list], color='k')
+	# plot(range(len(population_list)), [pop.get_individuals()[index].fitness/(2*len(pop.get_individuals())) for pop in population_list], color='k')
+	savefig('blotto_strategy.png')
 
 
 figure(3)
