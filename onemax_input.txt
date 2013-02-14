@@ -1,6 +1,6 @@
 onemax
 40
-40
+60
 bitwise
 0.01
 1
@@ -9,5 +9,5 @@ bitwise
 1
 full_replacement
 tournament
-20
-0.1
+60
+0

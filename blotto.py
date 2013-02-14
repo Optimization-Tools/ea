@@ -22,14 +22,14 @@ class blotto_ptype(binary_gtype.binary_genotype):
 			if diff > 0:
 				this_wins += 1
 				that.morale *= (1-lf)
-				if i < problem_size-1:
+				if rf != 0 and i < problem_size-1:
 					distribute = diff*rf/(problem_size-i+1)
 					for j in xrange(i+1, problem_size):
 						this_ptype[j] += distribute
 			elif diff < 0:
 				that_wins += 1
 				this.morale *= (1-lf)
-				if i < problem_size-1:
+				if rf != 0 and i < problem_size-1:
 					distribute = -diff*rf/(problem_size-i+1)
 					for j in xrange(i+1, problem_size):
 						that_ptype[j] += distribute
@@ -104,16 +104,23 @@ ylabel("Fitness")
 legend(loc="lower center", ncol=3)
 
 
-colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
+colors = ['b', 'g', 'r', 'c', 'm', 'y', 'w']
+def strategy_plot(index):
+	bottomlist = [0]*len(population_list)
+	toplist = [pop.get_individuals()[index].phenotype[0] for pop in population_list]
+	for i in xrange(1, problem_size):
+		fill_between(range(len(population_list)), toplist, bottomlist, alpha=1, color=colors[i%7])
+		for k in range(len(toplist)):
+			bottomlist[k] = toplist[k]
+			toplist[k] += population_list[k].get_individuals()[index].phenotype[i]
+	fill_between(range(len(population_list)), toplist, bottomlist, alpha=1, color=colors[(problem_size)%7])
+	plot(range(len(population_list)), [pop.get_individuals()[index].fitness/(2*len(pop.get_individuals())) for pop in population_list], color='k')
+
+
 figure(3)
-bottomlist = [0]*len(population_list)
-toplist = [pop.get_individuals()[0].phenotype[0] for pop in population_list]
-for i in xrange(1, problem_size):
-	fill_between(range(len(population_list)), toplist, bottomlist, alpha=1, color=colors[i%8])
-	for k in range(len(toplist)):
-		bottomlist[k] = toplist[k]
-		toplist[k] += population_list[k].get_individuals()[0].phenotype[i]
-fill_between(range(len(population_list)), toplist, bottomlist, alpha=1, color=colors[(problem_size)%8])
+strategy_plot(0)
+figure(4)
+strategy_plot(-1)
 		
 
 show()
