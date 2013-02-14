@@ -34,7 +34,7 @@ std_dev = [pop.fitness_standard_deviation() for pop in population_list]
 print "Plotting..."
 fill_between(range(len(best)), average_plus_stddev, average_minus_stddev, alpha=0.2, color='b', label="Standard deviation")
 plot(range(len(best)), best, color='r', label="Best")
-plot(range(len(best)), average, color='b', label="Average with std_dev")
+plot(range(len(best)), average, color='b', label="Average with std. dev.")
 title("Fitness plot - Onemax")
 xlabel("Generation")
 ylabel("Fitness")
