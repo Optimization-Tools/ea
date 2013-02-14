@@ -3,10 +3,11 @@
 0
 20
 bitwise
-0.04
+0.005
 1
 1
-500
+400
 0
-full_replacement
+generational_mixing
+20
 sigma_scaling
