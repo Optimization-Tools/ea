@@ -3,6 +3,7 @@ import binary_gtype
 import evoalg
 from math import log
 from pylab import plot, show, figure, fill_between
+from copy import deepcopy
 
 class blotto_ptype(binary_gtype.binary_genotype):
 	phenotype = None
@@ -12,22 +13,24 @@ class blotto_ptype(binary_gtype.binary_genotype):
 	def battle(this, that):
 		this.morale = 1.
 		that.morale = 1.
+		this_ptype = deepcopy(this.phenotype)
+		that_ptype = deepcopy(that.phenotype)
 		for i in xrange(problem_size):
-			diff = this.phenotype[i] - that.phenotype[i]
+			diff = this_ptype[i] - that_ptype[i]
 			if diff > 0:
 				this.fitness += 2
 				that.morale *= (1-lf)
 				if i < problem_size-1:
 					distribute = diff*rf/(problem_size-i+1)
 					for j in xrange(i+1, problem_size):
-						this.phenotype[j] += distribute
+						this_ptype[j] += distribute
 			elif diff < 0:
 				that.fitness += 2
 				this.morale *= (1-lf)
 				if i < problem_size-1:
 					distribute = -diff*rf/(problem_size-i+1)
 					for j in xrange(i+1, problem_size):
-						that.phenotype[j] += distribute
+						that_ptype[j] += distribute
 			else:
 				this.fitness += 1
 				that.fitness += 1
