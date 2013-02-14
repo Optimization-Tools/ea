@@ -8,4 +8,6 @@ bitwise
 200
 1
 full_replacement
-fitness_proportionate
+tournament
+20
+0.1

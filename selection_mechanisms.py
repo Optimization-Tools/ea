@@ -61,7 +61,7 @@ class tournament(selection_mechanism):
 		out = []
 		for i in range(this.n):
 			selection = random.sample(parents, this.k)
-			if random.random() < this.e:
+			if random.random() > this.e:
 				out += [max(selection, key=itemgetter(1))[0]]
 			else:
 				out += [random.sample(selection, 1)[0][0]]
