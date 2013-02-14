@@ -2,7 +2,7 @@ from __future__ import division
 import binary_gtype
 import evoalg
 from math import log
-from pylab import plot, show, figure, fill_between
+from pylab import plot, show, figure, fill_between, xlabel, ylabel, title, legend, subplot
 from copy import deepcopy
 
 class blotto_ptype(binary_gtype.binary_genotype):
@@ -80,14 +80,28 @@ topline = [average[i] + std_dev[i] for i in xrange(len(population_list))]
 bottomline = [average[i] - std_dev[i] for i in xrange(len(population_list))]
 
 figure(1)
-plot(range(len(average_entropy)), average_entropy, color='b')
+ax = subplot(111)
+ax.plot(range(len(average_entropy)), average_entropy, color='b', label="Average entropy")
+#plot(range(len(best_entropy)), best_entropy, color='r')
+box = ax.get_position()
+ax.set_position([box.x0, box.y0 + box.height*0.1, box.width, box.height*0.9])
+title("Average strategy entropy in the population")
+xlabel("Generation")
+ylabel("Entropy")
+ax.legend(loc="lower center")
 
 figure(2)
-#plot(range(len(best_entropy)), best_entropy, color='r')
-fill_between(range(len(population_list)), topline, bottomline, alpha=0.2, color='b')
-plot(range(len(population_list)), best, color='r')
-plot(range(len(population_list)), average, color='b')
-plot(range(len(population_list)), worst, color='k')
+bx = subplot(111)
+bx.fill_between(range(len(population_list)), topline, bottomline, alpha=0.2, color='b')
+bx.plot(range(len(population_list)), best, color='r', label="Best")
+bx.plot(range(len(population_list)), average, color='b', label="Average with std. dev.")
+bx.plot(range(len(population_list)), worst, color='k', label="Worst")
+box2 = bx.get_position()
+bx.set_position([box2.x0, box2.y0 + box.height*0.1, box2.width, box2.height*0.9])
+title("Fitness plot for Blotto strategies")
+xlabel("Generation")
+ylabel("Fitness")
+bx.legend(loc="lower center", ncol=3)
 
 
 colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
