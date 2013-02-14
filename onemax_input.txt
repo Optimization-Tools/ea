@@ -1,0 +1,11 @@
+onemax
+40
+40
+bitwise
+0.01
+1
+1
+200
+1
+full_replacement
+fitness_proportionate
