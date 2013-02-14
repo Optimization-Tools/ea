@@ -35,14 +35,14 @@ Taking the things mentioned in the problem text point by point, here's what's ne
 \item{\textbf{Phenotypes} --- As these are problem specific, a new phenotype class is added to the script for the problem to be solved. The rest of the program interacts with the phenotype class through the fitness field and calc\_fitness, which accepts a population and sets the fitness field for all individuals in that population.}
 \item{\textbf{Genotypes} --- Phenotypes are subclasses of genotypes, so a new genotype class can be placed either in the problem-specific script, or in its own file if it can be reused. The interface to a genotype is through the methods mutate and crossover. In addition to this a genotype class may have other methods or fields, but these are only used internally and by the phenotype class.}
 \item{\textbf{Genetic Operators} --- If need be, mutate and crossover can be fields rather than methods, and then these fields can be set to the desired method at runtime. This is done by the production class (since it is the only class that actually crosses and mutates genomes). We do this with the binary\_gtype class, which supports both per-bit and one-bit-per-gene mutations.}
-\item{\textbf{Selection Mechanisms} --- Selection mechanisms (and protocols) are objects with a standard interface, so adding new ones is as simple as writing a new class with the same interface.}
+\item{\textbf{Selection Mechanisms} --- Selection mechanisms (and protocols) are objects with a standard interface, so adding new ones is as simple as writing a new class with the same interface. Also, this class needs to be added to a list of available selection mechanisms, implemented as a dictionary.}
 \end{itemize}
 
 \section{Performance Analysis and Choosing Parameters}
 First of all, we found that using $\frac{Correct bits}{Total bits}$ as a fitness function was a bad choice for fitness-proportionate selection, since an off-by-one and off-by-two phenotype will have almost the same chance at being selected. Therefore, we went for $\frac{4}{4+Incorrect bits}$ instead. 
 
 \subsection{Population Size}
-With ``reasonable'' values (i.e. educated guesses) for mutation and crossover rate, the smallest population size that consistently ran in under 100 generations was 40. 
+With ``reasonable'' values (i.e. educated guesses) for mutation and crossover rate, the smallest population size that consistently ran in under 100 generations was 60. 
 
 \subsection{Mutation and Crossover Rate}
 We take the meaning of ``best'' to be ``finds an answer in the least possible generations''. The following options were tested: 
