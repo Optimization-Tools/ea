@@ -3,6 +3,7 @@ import adult_selection
 import selection_mechanisms
 import population
 from sys import stdout
+from copy import deepcopy
 
 def main(phenotype_class):
 	popsize = int(input("Input population size: "))
@@ -25,7 +26,7 @@ def main(phenotype_class):
 		litter = babymaker.produce(parents)
 		pop = protocol.select(pop, litter)
 		
-		population_list += [pop]
+		population_list += [deepcopy(pop)]
 		
 		stdout.write("\b"*len(generation_s))
 		generation += 1
