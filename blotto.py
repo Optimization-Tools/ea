@@ -38,8 +38,8 @@ class blotto_ptype(binary_gtype.binary_genotype):
 		elif that_wins > this_wins:
 			that.fitness += 2
 		else:
-				this.fitness += 1
-				that.fitness += 1
+			this.fitness += 1
+			that.fitness += 1
 	
 	def calc_fitness(this, lords):
 		for i in xrange(len(lords)):
@@ -109,18 +109,18 @@ def strategy_plot(index):
 	bottomlist = [0]*len(population_list)
 	toplist = [pop.get_individuals()[index].phenotype[0] for pop in population_list]
 	for i in xrange(1, problem_size):
-		fill_between(range(len(population_list)), toplist, bottomlist, alpha=1, color=colors[i%7])
+		fill_between(range(len(population_list)), toplist, bottomlist, alpha=1, color=str(i/problem_size))
 		for k in range(len(toplist)):
 			bottomlist[k] = toplist[k]
 			toplist[k] += population_list[k].get_individuals()[index].phenotype[i]
-	fill_between(range(len(population_list)), toplist, bottomlist, alpha=1, color=colors[(problem_size)%7])
-	plot(range(len(population_list)), [pop.get_individuals()[index].fitness/(2*len(pop.get_individuals())) for pop in population_list], color='k')
+	fill_between(range(len(population_list)), toplist, bottomlist, alpha=1, color=str(i/problem_size))
+	#plot(range(len(population_list)), [pop.get_individuals()[index].fitness/(2*len(pop.get_individuals())	) for pop in population_list], color='k')
 
 
 figure(3)
 strategy_plot(0)
-figure(4)
-strategy_plot(-1)
+#figure(4)
+#strategy_plot(-1)
 		
 
 show()
