@@ -22,14 +22,17 @@ class population:
 		return population(this.individuals + that.individuals)
 		
 	def average_fitness(this):
-		return sum([pheno.fitness for pheno in this.individuals])/this.size()
+		return sum(pheno.fitness for pheno in this.individuals)/this.size()
 		
 	def max_fitness(this):
-		return max([pheno.fitness for pheno in this.individuals])
+		return max(pheno.fitness for pheno in this.individuals)
+		
+	def min_fitness(this):
+		return min(pheno.fitness for pheno in this.individuals)
 
 	def fitness_standard_deviation(this):
 		average = this.average_fitness()
 		return (sum([(pheno.fitness - average) ** 2 for pheno in this.individuals])/this.size()) ** 0.5
 		
 	def sort(this):
-		this.individuals.sort(reverse=True, key=attrgettr(fitness))
+		this.individuals.sort(reverse=True, key=lambda pheno: pheno.fitness)

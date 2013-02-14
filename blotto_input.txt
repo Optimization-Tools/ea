@@ -8,6 +8,5 @@ bitwise
 1
 500
 0
-generational_mixing
-20
+full_replacement
 sigma_scaling
